@@ -14,6 +14,7 @@ import { resp } from "../utils/responsive";
 import Button from "../components/Button";
 import ListItem from "../components/ListItem";
 import { assetData } from "../data/assets";
+import SwipeButton from "../components/CustomSwipeButton";
 
 const HomeScreen = () => {
   return (
@@ -55,6 +56,7 @@ const HomeScreen = () => {
           />
         </View>
       </View>
+      <SwipeButton />
     </View>
   );
 };
