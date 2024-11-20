@@ -9,6 +9,8 @@ export const colors = {
   itemPrimaryGradient: "#C426FF99",
   itemSecondaryGradient: "#391FDC99",
 
-  success: "#64fe00",
-  danger: "red",
+  success: "#00EA10",
+  danger: "#FF0000",
+
+  secondaryText: "#ffffff80",
 };

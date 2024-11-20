@@ -1,12 +1,13 @@
 import {
   FlatList,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
+import React, { useEffect } from "react";
 import { colors } from "../config/colors";
 import Header from "../components/Header";
 import Icon from "../components/Icon";
@@ -17,6 +18,13 @@ import { assetData } from "../data/assets";
 import SwipeButton from "../components/CustomSwipeButton";
 
 const HomeScreen = () => {
+  useEffect(() => {
+    StatusBar.setBackgroundColor(colors.primaryGradient);
+
+    return () => {
+      StatusBar.setBackgroundColor(colors.background);
+    };
+  }, []);
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -24,6 +32,7 @@ const HomeScreen = () => {
         colors={[colors.primaryGradient, colors.secondaryGradient]}
         style={styles.background}
       />
+      <StatusBar animated backgroundColor={colors.primaryGradient} />
       <Header />
       <View style={styles.centeredContainer}>
         <View style={styles.portfolioContainer}>

@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import HomeNavigator from "./HomeNavigator";
 import { resp } from "../utils/responsive";
 import { colors } from "../config/colors";
+import HistoryScreen from "../screens/HistoryScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -37,7 +38,7 @@ const AppNavigator = () => {
       />
       <Tab.Screen
         name="History"
-        component={HomeNavigator}
+        component={HistoryScreen}
         options={{
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons name="calendar" size={size} color={color} />
