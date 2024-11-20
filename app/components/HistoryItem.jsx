@@ -24,7 +24,15 @@ const HistoryItem = ({ item }) => {
             >
               {item.changePercent}
             </Text>
-            <IncrementIcon color={isProfit ? colors.success : colors.danger} />
+            <View
+              style={{
+                transform: [{ rotate: isProfit ? "0deg" : "180deg" }],
+              }}
+            >
+              <IncrementIcon
+                color={isProfit ? colors.success : colors.danger}
+              />
+            </View>
           </View>
         </View>
 
