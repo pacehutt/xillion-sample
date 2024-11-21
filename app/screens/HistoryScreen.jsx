@@ -1,13 +1,21 @@
-import { StatusBar, StyleSheet, Text, View, FlatList } from "react-native";
-import React, { useEffect } from "react";
+import { StyleSheet, Text, View, FlatList } from "react-native";
+import React from "react";
 import { colors } from "../config/colors";
 import { resp } from "../utils/responsive";
 import Icon from "../components/Icon";
 import { tradeHistory } from "../data/history"; // Import your trade history data
 import HistoryItem from "../components/HistoryItem"; // Assuming you already have the component
 import { SafeAreaView } from "react-native-safe-area-context";
+import { GestureDetector, Gesture } from "react-native-gesture-handler";
 
 const HistoryScreen = ({ navigation }) => {
+  const leftSwipe = Gesture.Pan()
+    .activeOffsetX([-50, 0])
+    .failOffsetY([-5, 5])
+    .onEnd(() => {
+      console.log("Swiped left!");
+      navigation.goBack();
+    });
   return (
     <SafeAreaView
       style={{
@@ -15,30 +23,32 @@ const HistoryScreen = ({ navigation }) => {
         backgroundColor: colors.background,
       }}
     >
-      <View style={styles.container}>
-        {/* Header Section */}
-        <View style={styles.header}>
-          <Icon
-            name="arrowleft"
-            size={resp(40)}
-            onPress={() => navigation.goBack()}
+      <GestureDetector gesture={leftSwipe}>
+        <View style={styles.container}>
+          {/* Header Section */}
+          <View style={styles.header}>
+            <Icon
+              name="arrowleft"
+              size={resp(40)}
+              onPress={() => navigation.goBack()}
+            />
+            <Text style={styles.headerText}>Trade History</Text>
+          </View>
+
+          {/* Description */}
+          <Text style={styles.description}>
+            Your ongoing and completed trades are being displayed here.
+          </Text>
+
+          {/* FlatList Rendering */}
+          <FlatList
+            data={tradeHistory}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => <HistoryItem item={item} />}
+            contentContainerStyle={{ padding: resp(12) }}
           />
-          <Text style={styles.headerText}>Trade History</Text>
         </View>
-
-        {/* Description */}
-        <Text style={styles.description}>
-          Your ongoing and completed trades are being displayed here.
-        </Text>
-
-        {/* FlatList Rendering */}
-        <FlatList
-          data={tradeHistory}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <HistoryItem item={item} />}
-          contentContainerStyle={{ padding: resp(12) }}
-        />
-      </View>
+      </GestureDetector>
     </SafeAreaView>
   );
 };

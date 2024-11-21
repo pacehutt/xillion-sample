@@ -1,13 +1,14 @@
-import { StatusBar, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import AppNavigator from "./app/navigation";
 import { NavigationContainer } from "@react-navigation/native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { colors } from "./app/config/colors";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {
   return (
     <NavigationContainer>
-      <AppNavigator />
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <AppNavigator />
+      </GestureHandlerRootView>
     </NavigationContainer>
   );
 }
