@@ -22,7 +22,8 @@ This React Native application showcases UI implementation, modern design practic
    - Leveraged the **react-native-responsive-screen** library to ensure consistent layouts across different device sizes.
 
 5. **Navigation:**
-   - Utilized **React Navigation** for smooth and intuitive screen transitions and gesture-based navigation.
+   - Utilized **React Navigation** for smooth and intuitive screen transitions and gesture-based navigation.   
+   - Separated different stack navigators and implemented a central tab navigator to manage the app flow
 
 6. **Code Quality:**
    - Followed best practices such as **separation of concerns** and modular code organization.
