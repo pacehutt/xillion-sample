@@ -7,13 +7,7 @@ import { colors } from "./app/config/colors";
 export default function App() {
   return (
     <NavigationContainer>
-      <SafeAreaView
-        style={{
-          flex: 1,
-        }}
-      >
-        <AppNavigator />
-      </SafeAreaView>
+      <AppNavigator />
     </NavigationContainer>
   );
 }

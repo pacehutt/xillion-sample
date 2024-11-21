@@ -5,42 +5,41 @@ import { resp } from "../utils/responsive";
 import Icon from "../components/Icon";
 import { tradeHistory } from "../data/history"; // Import your trade history data
 import HistoryItem from "../components/HistoryItem"; // Assuming you already have the component
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const HistoryScreen = ({ navigation }) => {
-  useEffect(() => {
-    StatusBar.setBackgroundColor(colors.background);
-
-    return () => {
-      StatusBar.setBackgroundColor(colors.primaryGradient);
-    };
-  }, []);
-
   return (
-    <View style={styles.container}>
-      <StatusBar animated backgroundColor={colors.background} />
-      {/* Header Section */}
-      <View style={styles.header}>
-        <Icon
-          name="arrowleft"
-          size={resp(40)}
-          onPress={() => navigation.goBack()} // If navigation exists
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: colors.background,
+      }}
+    >
+      <View style={styles.container}>
+        {/* Header Section */}
+        <View style={styles.header}>
+          <Icon
+            name="arrowleft"
+            size={resp(40)}
+            onPress={() => navigation.goBack()}
+          />
+          <Text style={styles.headerText}>Trade History</Text>
+        </View>
+
+        {/* Description */}
+        <Text style={styles.description}>
+          Your ongoing and completed trades are being displayed here.
+        </Text>
+
+        {/* FlatList Rendering */}
+        <FlatList
+          data={tradeHistory}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <HistoryItem item={item} />}
+          contentContainerStyle={{ padding: resp(12) }}
         />
-        <Text style={styles.headerText}>Trade History</Text>
       </View>
-
-      {/* Description */}
-      <Text style={styles.description}>
-        Your ongoing and completed trades are being displayed here.
-      </Text>
-
-      {/* FlatList Rendering */}
-      <FlatList
-        data={tradeHistory}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => <HistoryItem item={item} />}
-        contentContainerStyle={{ padding: resp(12) }}
-      />
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -16,57 +16,57 @@ import Button from "../components/Button";
 import ListItem from "../components/ListItem";
 import { assetData } from "../data/assets";
 import SwipeButton from "../components/CustomSwipeButton";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const HomeScreen = () => {
-  useEffect(() => {
-    StatusBar.setBackgroundColor(colors.primaryGradient);
-
-    return () => {
-      StatusBar.setBackgroundColor(colors.background);
-    };
-  }, []);
   return (
-    <View style={styles.container}>
-      <LinearGradient
-        // Background Linear Gradient
-        colors={[colors.primaryGradient, colors.secondaryGradient]}
-        style={styles.background}
-      />
-      <StatusBar animated backgroundColor={colors.primaryGradient} />
-      <Header />
-      <View style={styles.centeredContainer}>
-        <View style={styles.portfolioContainer}>
-          <Text style={styles.portfolioTitle}>Current Portfolio</Text>
-          <View style={styles.portfolioValueContainer}>
-            <Text style={styles.portfolioValue}>₹ 12,38,364</Text>
-            <Icon name={"refresh-cw"} isFeather />
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: colors.primaryGradient,
+      }}
+    >
+      <View style={styles.container}>
+        <LinearGradient
+          // Background Linear Gradient
+          colors={[colors.primaryGradient, colors.secondaryGradient]}
+          style={styles.background}
+        />
+        <Header />
+        <View style={styles.centeredContainer}>
+          <View style={styles.portfolioContainer}>
+            <Text style={styles.portfolioTitle}>Current Portfolio</Text>
+            <View style={styles.portfolioValueContainer}>
+              <Text style={styles.portfolioValue}>₹ 12,38,364</Text>
+              <Icon name={"refresh-cw"} isFeather />
+            </View>
+          </View>
+
+          <View style={styles.unusedFundsContainer}>
+            <Text style={styles.unusedFundsTitle}>Unused Funds</Text>
+            <Text style={styles.unusedFundsValue}>₹ 1,18,261</Text>
           </View>
         </View>
 
-        <View style={styles.unusedFundsContainer}>
-          <Text style={styles.unusedFundsTitle}>Unused Funds</Text>
-          <Text style={styles.unusedFundsValue}>₹ 1,18,261</Text>
+        <View style={styles.buttonsContainer}>
+          <Button iconName="download" text="Portfolio" onPress={() => {}} />
+          <Button iconName="message-square" text="Ask AI" onPress={() => {}} />
         </View>
-      </View>
 
-      <View style={styles.buttonsContainer}>
-        <Button iconName="download" text="Portfolio" onPress={() => {}} />
-        <Button iconName="message-square" text="Ask AI" onPress={() => {}} />
-      </View>
-
-      <View style={styles.assetsContainer}>
-        <Text style={styles.assetsTitle}>Today's Recommendations</Text>
-        <View style={styles.assetsListContainer}>
-          <FlatList
-            data={assetData}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => <ListItem item={item} />}
-            contentContainerStyle={styles.assetsListContent}
-          />
+        <View style={styles.assetsContainer}>
+          <Text style={styles.assetsTitle}>Today's Recommendations</Text>
+          <View style={styles.assetsListContainer}>
+            <FlatList
+              data={assetData}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({ item }) => <ListItem item={item} />}
+              contentContainerStyle={styles.assetsListContent}
+            />
+          </View>
         </View>
+        <SwipeButton />
       </View>
-      <SwipeButton />
-    </View>
+    </SafeAreaView>
   );
 };
 
